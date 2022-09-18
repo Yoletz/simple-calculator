@@ -1,0 +1,39 @@
+body {
+  height: 100vh;
+  width: 25vw;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+body,
+#container,
+#text,
+#upper-portion,
+#math-symbol-row,
+#lower-portion,
+#numbers-and-point,
+.decimal,
+#math-symbol-col {
+  display: flex;
+}
+
+#container,
+#upper-portion,
+#numbers-and-point,
+#math-symbol-col {
+  flex-direction: column;
+}
+
+body * {
+  flex: 1;
+  gap: 10px;
+}
+
+#numbers-and-point {
+  flex: 3;
+}
+
+#zero {
+  flex: 2;
+}
