@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: monospace;
   user-select: none;
   display: flex;
   height: 100vh;
@@ -10,8 +10,8 @@ body {
 
 #container {
   border: 2px solid black;
-  height: 450px;
-  width: 300px;
+  height: 500px;
+  width: 500px;
   padding: 20px;
 
   display: grid;
@@ -22,7 +22,7 @@ body {
     "four   five    six     add"
     "one    two     three   equals"
     "zero   zero    point   equals";
-  gap: 15px;
+  gap: 20px;
 }
 
 #text {
@@ -32,11 +32,12 @@ body {
 }
 
 #primary {
-  font-size: 32px;
+  font-size: 40px;
   flex: 2;
 }
 
 #secondary {
+  font-size: 20px;
   flex: 1;
 }
 
@@ -51,6 +52,7 @@ body {
 }
 
 button {
+  font-size: 30px;
   border-color: black;
   background-color: white;
   box-shadow: 5px 5px black;
