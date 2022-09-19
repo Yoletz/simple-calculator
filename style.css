@@ -1,19 +1,56 @@
 body {
+  font-family: sans-serif;
   display: flex;
   height: 100vh;
-  width: 25vw;
   margin: auto;
   justify-content: center;
   align-items: center;
 }
 
 #container {
+  border: 2px solid black;
+  height: 450px;
+  width: 300px;
+  padding: 20px;
+
   display: grid;
   grid-template-areas: 
-    "text text text text"
-    "pow div mul sub"
-    "seven eight nine add"
-    "four five six add"
-    "one two three equals"
-    "zero zero point equals";
+    "text   text    text    text"
+    "pow    div     mul     sub"
+    "seven  eight   nine    add"
+    "four   five    six     add"
+    "one    two     three   equals"
+    "zero   zero    point   equals";
+  gap: 15px;
+}
+
+#text {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+}
+
+#primary {
+  font-size: 32px;
+  flex: 2;
+}
+
+#secondary {
+  flex: 1;
+}
+
+#text > div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#text, #text > div {
+  border: 1px solid black;
+}
+
+button {
+  border-color: black;
+  background-color: white;
+  box-shadow: 5px 5px black;
 }
