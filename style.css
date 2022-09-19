@@ -1,4 +1,5 @@
 body {
+  display: flex;
   height: 100vh;
   width: 25vw;
   margin: auto;
@@ -6,34 +7,13 @@ body {
   align-items: center;
 }
 
-body,
-#container,
-#text,
-#upper-portion,
-#math-symbol-row,
-#lower-portion,
-#numbers-and-point,
-.decimal,
-#math-symbol-col {
-  display: flex;
-}
-
-#container,
-#upper-portion,
-#numbers-and-point,
-#math-symbol-col {
-  flex-direction: column;
-}
-
-body * {
-  flex: 1;
-  gap: 10px;
-}
-
-#numbers-and-point {
-  flex: 3;
-}
-
-#zero {
-  flex: 2;
+#container {
+  display: grid;
+  grid-template-areas: 
+    "text text text text"
+    "pow div mul sub"
+    "seven eight nine add"
+    "four five six add"
+    "one two three equals"
+    "zero zero point equals";
 }
