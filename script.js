@@ -12,9 +12,11 @@ for (const button of buttons) {
       button.style.boxShadow = "none";
     }
   });
+}
 
-  button.addEventListener("mouseup", function () {
+document.addEventListener("mouseup", function () {
+  for (const button of buttons) {
     button.style.transform = "translate(0, 0)";
     button.style.boxShadow = "5px 5px black";
-  });
-}
+  }
+});
