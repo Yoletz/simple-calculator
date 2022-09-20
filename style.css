@@ -1,5 +1,5 @@
 body {
-  font-family: monospace;
+  font-family: arial, monospace;
   user-select: none;
   display: flex;
   height: 100vh;
@@ -17,7 +17,7 @@ body {
   display: grid;
   grid-template-areas: 
     "text   text    text    text"
-    "pow    div     mul     sub"
+    "clear    div     mul     sub"
     "seven  eight   nine    add"
     "four   five    six     add"
     "one    two     three   equals"
