@@ -24,7 +24,7 @@ function displayText(btn) {
   if (text.textContent.length === 15) {
     return;
   }
-  
+
   if (btn.className === "decimal") {
     if (lastValue) {
       text.textContent = "";
@@ -32,6 +32,16 @@ function displayText(btn) {
     }
     
     if (btn.id === "point" && text.textContent.match(/\./)) {
+      return;
+    }
+
+    if (btn.id === "point" && text.textContent === "") {
+      text.textContent = "0.";
+      return;
+    }
+
+    if (text.textContent === "0" && btn.id != "point") {
+      text.textContent = btn.textContent;
       return;
     }
 
