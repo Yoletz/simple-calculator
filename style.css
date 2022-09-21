@@ -16,22 +16,33 @@ body {
 
   display: grid;
   grid-template-areas: 
-    "text   text    text    text"
+    "display  display display display"
     "clear    div     mul     sub"
-    "seven  eight   nine    add"
-    "four   five    six     add"
-    "one    two     three   equals"
-    "zero   zero    point   equals";
+    "seven    eight   nine    add"
+    "four     five    six     add"
+    "one      two     three   equals"
+    "zero     zero    point   equals";
   gap: 20px;
 }
 
-#text {
-  font-size: 40px;
+#display {
+  display: flex;
+  align-items: center;
   border: 2px solid black;
+}
+
+#oper-icon {
+  flex: initial;
+  color: #999;
+}
+
+#text {
+  font-size: 50px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 75px;
+  flex: 1;
+  overflow: hidden;
 }
 
 button {
