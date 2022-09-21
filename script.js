@@ -3,19 +3,16 @@ const buttons = document.querySelectorAll("button");
 const text = document.querySelector("#text");
 const icons = document.querySelectorAll("#oper-icon > *");
 
-let ans = null;
+let ans = 0;
 let currentOperator = "";
 let lastValue = false;
 
 function displayText(btn) {
 
-  if (lastValue) {
-    text.textContent = "";
-    lastValue = false;
-  }
-
   if (btn.id === "clear") {
     text.textContent = "";
+    ans = 0;
+    currentOperator = "";
     return;
   }
 
@@ -28,11 +25,15 @@ function displayText(btn) {
   }
 
   if (btn.className === "decimal") {
-    text.textContent += btn.textContent;
-  } else if (btn.id === "point") {
-    if (text.textContent.match(/\./)) {
+    if (lastValue) {
+      text.textContent = "";
+      lastValue = false;
+    }
+
+    if (btn.id === "point" && text.textContent.match(/\./)) {
       return;
     }
+
     text.textContent += btn.textContent;
   } else if (btn.className === "operate") {
     operate(btn.id, text.textContent);
@@ -42,8 +43,12 @@ function displayText(btn) {
 function operate(symbol, txt) {
   if (!currentOperator) {
     ans = Number(txt);
-    currentOperator = symbol;
   } else {
+    if (lastValue) {
+      currentOperator = symbol;
+      return;
+    }
+
     switch (currentOperator) {
       case "add":
         ans += Number(txt);
@@ -59,11 +64,11 @@ function operate(symbol, txt) {
         break;
     }
   }
-  text.textContent = ans;
+  currentOperator = symbol;
+  text.textContent = Math.round(ans * 1000) / 1000;
   lastValue = true;
 
-  if (symbol === "equals") {
-    ans = null;
+  if (currentOperator === "equals") {
     currentOperator = "";
   }
 }
