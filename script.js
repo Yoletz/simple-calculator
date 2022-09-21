@@ -25,6 +25,19 @@ function displayText(btn) {
     return;
   }
 
+  if (btn.id === "negative") {
+    if (!lastValue) {
+      const temp = -Number(text.textContent);
+      text.textContent = temp;
+    }
+  }
+
+  if (btn.id === "backspace") {
+    if (!lastValue) {
+      text.textContent = text.textContent.slice(0, text.textContent.length - 1);
+    }
+  }
+
   if (btn.className === "decimal") {
     if (lastValue) {
       text.textContent = "";
