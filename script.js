@@ -2,6 +2,7 @@ const containerChildren = document.querySelectorAll("#container > *");
 const buttons = document.querySelectorAll("button");
 const text = document.querySelector("#text");
 const icons = document.querySelectorAll("#oper-icon > *");
+const opButtons = document.querySelectorAll(".operate");
 
 let ans = 0;
 let currentOperator = "";
@@ -76,6 +77,21 @@ function operate(symbol, txt) {
 for (const child of containerChildren) {
   child.style.gridArea = child.id;
 }
+
+for (const button of opButtons) {
+  button.addEventListener("click", function () {
+
+    for (const icon of icons) {
+      icon.style.color = "#999";
+      icon.style.fontWeight = "normal";
+    }
+    const icon = document.querySelector(`#${button.id}-icon`);
+    if (icon) {
+      icon.style.color = "black";
+      icon.style.fontWeight = "bold";
+    }
+  });
+} 
 
 function pressedButton(button) {
   button.style.transform = "translate(5px, 5px)";
