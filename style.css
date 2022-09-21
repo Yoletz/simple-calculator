@@ -1,5 +1,5 @@
 body {
-  font-family: arial, monospace;
+  font-family: monospace;
   user-select: none;
   display: flex;
   height: 100vh;
@@ -29,6 +29,7 @@ body {
   display: flex;
   align-items: center;
   border: 2px solid black;
+  overflow: hidden;
 }
 
 #oper-icon {
@@ -42,7 +43,6 @@ body {
   justify-content: flex-end;
   align-items: center;
   flex: 1;
-  overflow: hidden;
 }
 
 button {

@@ -2,8 +2,26 @@ const containerChildren = document.querySelectorAll("#container > *");
 const buttons = document.querySelectorAll("button");
 const text = document.querySelector("#text");
 
-function displayText() {
+let ans = 0;
+
+function displayText(btn) {
   
+  if (text.textContent.length === 15) {
+    return;
+  }
+
+  if (btn.className === "decimal") {
+    text.textContent += btn.textContent;
+  } else if (btn.id === "clear") {
+    text.textContent = ""
+    ans = 0;
+  } else if (btn.id === "point") {
+
+    if (text.textContent.match(/\./)) {
+      return;
+    }
+    text.textContent += btn.textContent;
+  }
 }
 
 for (const child of containerChildren) {
