@@ -26,29 +26,12 @@ body {
 }
 
 #text {
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-}
-
-#primary {
   font-size: 40px;
-  flex: 2;
-}
-
-#secondary {
-  font-size: 20px;
-  flex: 1;
-}
-
-#text > div {
+  border: 2px solid black;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-#text, #text > div {
-  border: 1px solid black;
+  height: 75px;
 }
 
 button {
