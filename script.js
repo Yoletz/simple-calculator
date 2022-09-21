@@ -24,13 +24,13 @@ function displayText(btn) {
   if (text.textContent.length === 15) {
     return;
   }
-
+  
   if (btn.className === "decimal") {
     if (lastValue) {
       text.textContent = "";
       lastValue = false;
     }
-
+    
     if (btn.id === "point" && text.textContent.match(/\./)) {
       return;
     }

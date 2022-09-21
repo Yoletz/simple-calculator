@@ -19,9 +19,9 @@ body {
     "display  display display display"
     "clear    div     mul     sub"
     "seven    eight   nine    add"
-    "four     five    six     add"
+    "four     five    six     backspace"
     "one      two     three   equals"
-    "zero     zero    point   equals";
+    "negative zero    point   equals";
   gap: 20px;
 }
 
