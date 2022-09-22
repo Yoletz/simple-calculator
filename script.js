@@ -187,7 +187,9 @@ window.addEventListener("keydown", function (e) {
 
     if (button.getAttribute("data-key").includes(e.key)) {
 
-      clearIcons();
+      if (button.className === "operate") {
+        clearIcons();
+      }
 
       const icon = document.querySelector(`#${button.id}-icon`);
       if (icon && !/[a-zA-Z]/.test(text.textContent)) {
