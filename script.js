@@ -8,6 +8,9 @@ let ans = 0;
 let currentOperator = "";
 let lastValue = false;
 
+const validKeys = ["c", "C", "+", "-", "*", "x", "X", "/", "Enter", "=", ".",
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Backspace", "Delete"];
+
 function displayText(btn) {
 
   if (btn.id === "clear") {
@@ -24,21 +27,21 @@ function displayText(btn) {
     return
   }
 
-  if (text.textContent.length === 15) {
-    return;
-  }
-
   if (btn.id === "negative") {
     if (/[a-zA-Z]/.test(text.textContent)) {
       return;
     }
 
-    if (!lastValue) {
-      const temp = -Number(text.textContent);
-      text.textContent = temp;
-    }
+    const temp = -Number(text.textContent);
+    text.textContent = temp;
+    lastValue = false;
   }
 
+  if (text.textContent.length === 15) {
+    return;
+  }
+
+  
   if (btn.id === "backspace") {
     if (!lastValue) {
       text.textContent = text.textContent.slice(0, text.textContent.length - 1);
@@ -78,6 +81,7 @@ function displayText(btn) {
       text.textContent = "Error!";
       currentOperator = "";
       ans = 0;
+      clearIcons();
       return;
     }
 
@@ -109,6 +113,7 @@ function operate(symbol, txt) {
           text.textContent = "Oh no!"
           currentOperator = "";
           ans = 0;
+          clearIcons();
           return;
         }
         ans /= Number(txt);
@@ -170,5 +175,28 @@ for (const button of buttons) {
 document.addEventListener("mouseup", function () {
   for (const button of buttons) {
     unpressedButton(button);
+  }
+});
+
+window.addEventListener("keydown", function (e) {
+  if (!validKeys.includes(e.key)) {
+    return;
+  }
+
+  for (const button of buttons) {
+
+    if (button.getAttribute("data-key").includes(e.key)) {
+
+      clearIcons();
+
+      const icon = document.querySelector(`#${button.id}-icon`);
+      if (icon && !/[a-zA-Z]/.test(text.textContent)) {
+        icon.style.color = "black";
+        icon.style.fontWeight = "bold";
+      }
+
+      displayText(button);
+      return;
+    }
   }
 });

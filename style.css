@@ -8,6 +8,11 @@ body {
   align-items: center;
 }
 
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 #container {
   border: 2px solid black;
   height: 500px;
