@@ -14,6 +14,9 @@ function displayText(btn) {
     text.textContent = "";
     ans = 0;
     currentOperator = "";
+
+    clearIcons();
+
     return;
   }
 
@@ -26,6 +29,10 @@ function displayText(btn) {
   }
 
   if (btn.id === "negative") {
+    if (/[a-zA-Z]/.test(text.textContent)) {
+      return;
+    }
+
     if (!lastValue) {
       const temp = -Number(text.textContent);
       text.textContent = temp;
@@ -35,6 +42,10 @@ function displayText(btn) {
   if (btn.id === "backspace") {
     if (!lastValue) {
       text.textContent = text.textContent.slice(0, text.textContent.length - 1);
+    }
+
+    if (/[a-zA-Z]/.test(text.textContent)) {
+      text.textContent = "";
     }
   }
 
@@ -48,18 +59,28 @@ function displayText(btn) {
       return;
     }
 
-    if (btn.id === "point" && text.textContent === "") {
+    if (btn.id === "point" && (text.textContent === "" || /[a-zA-Z]/.test(text.textContent))) {
       text.textContent = "0.";
       return;
     }
 
-    if (text.textContent === "0" && btn.id != "point") {
+    if (text.textContent === "0" && btn.id != "point" || /[a-zA-Z]/.test(text.textContent)) {
       text.textContent = btn.textContent;
       return;
     }
 
     text.textContent += btn.textContent;
-  } else if (btn.className === "operate") {
+  }
+  
+  if (btn.className === "operate") {
+
+    if (text.textContent === "" || /[a-zA-Z]/.test(text.textContent)) {
+      text.textContent = "Error!";
+      currentOperator = "";
+      ans = 0;
+      return;
+    }
+
     operate(btn.id, text.textContent);
   }
 }
@@ -84,6 +105,12 @@ function operate(symbol, txt) {
         ans *= Number(txt);
         break;
       case "div":
+        if (Number(txt) === 0) {
+          text.textContent = "Oh no!"
+          currentOperator = "";
+          ans = 0;
+          return;
+        }
         ans /= Number(txt);
         break;
     }
@@ -103,18 +130,23 @@ for (const child of containerChildren) {
 
 for (const button of opButtons) {
   button.addEventListener("click", function () {
+    
+    clearIcons();
 
-    for (const icon of icons) {
-      icon.style.color = "#999";
-      icon.style.fontWeight = "normal";
-    }
     const icon = document.querySelector(`#${button.id}-icon`);
-    if (icon) {
+    if (icon && !/[a-zA-Z]/.test(text.textContent)) {
       icon.style.color = "black";
       icon.style.fontWeight = "bold";
     }
   });
 } 
+
+function clearIcons() {
+  for (const icon of icons) {
+    icon.style.color = "#999";
+    icon.style.fontWeight = "normal";
+  }
+}
 
 function pressedButton(button) {
   button.style.transform = "translate(5px, 5px)";
